@@ -111,3 +111,33 @@ void Biped::TrimServos(int left_leg, int right_leg, int left_foot, int right_foo
     servos[3].setTrim(right_foot);
 }
 
+void Biped::OscillateServos(int amplitude[4], int offset[4], int phase[4], int time, float cycles = 1.0)
+{
+    for (int i=0; i<4; i++) 
+    {
+        servos[i].setAmplitude(amplitude[i]);
+        servos[i].setOffset(offset[i]);
+        servos[i].setPeriod(time);
+        servos[i].setPhase(phase[i]);
+        servos[i].setCycles(cycles);
+        servos[i].start();
+    }
+
+    while(servos[0].getPhaseStop() > 0 || servos[1].getPhaseStop() > 0 || servos[2].getPhaseStop() > 0 || servos[3].getPhaseStop() > 0)
+    { 
+        UpdateServos();
+    }
+
+
+}
+
+void Biped::Walk(int steps, int time, int direction)
+{
+    AttachServos();
+
+    int amplitude[4]= {30, 30, 20, 20};
+    int offset[4] = {0, 0, 4, -4};
+    int phase[4] = {0, 0, direction * -90, direction * -90};
+
+    OscillateServos(amplitude, offset, phase, time, steps);
+}
