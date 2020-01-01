@@ -8,7 +8,7 @@
 class Biped
 {
     public:
-        Biped(int LL, int LF, int RL, int RF);
+        Biped(int left_leg, int right_leg, int left_foot, int right_foot);
         void Home(void);
         void AttachServos(void);
         void DetachServos(void);
