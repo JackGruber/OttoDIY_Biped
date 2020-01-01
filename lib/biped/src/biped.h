@@ -14,7 +14,7 @@ class Biped
         void DetachServos(void);
         void UpdateServos(void);
         void Jump(int time);
-
+        void TrimServos(int left_leg, int right_leg, int left_foot, int right_foot);
     private:
         int servo_pins[4];
         int servo_trims[4];

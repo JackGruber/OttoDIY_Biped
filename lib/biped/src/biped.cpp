@@ -102,3 +102,12 @@ void Biped::Jump(int time)
     MoveServos(time, up);
     MoveServos(time, down);
 }
+
+void Biped::TrimServos(int left_leg, int right_leg, int left_foot, int right_foot)
+{
+    servos[0].setTrim(left_leg);
+    servos[1].setTrim(right_leg);
+    servos[2].setTrim(left_foot);
+    servos[3].setTrim(right_foot);
+}
+
